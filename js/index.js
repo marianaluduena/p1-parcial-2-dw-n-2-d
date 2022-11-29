@@ -7,50 +7,55 @@
 let productos = [
     {
         id: 1,
-        nombre: 'Producto',
+        nombre: 'Lápiz labial rojo',
         descripcion: 'Descripción del producto',
-        precio: 0,
+        precio: 2.000,
         imagen: 'producto-de-ejemplo.jpg',
-        categoría: 'Nombre de la categoría',
+        categoría: 'Boca',
     },
     {
         id: 2,
-        nombre: 'Producto',
+        nombre: 'Sombra de ojos',
         descripcion: 'Descripción del producto',
         precio: 0,
         imagen: 'producto-de-ejemplo.jpg',
-        categoría: 'Nombre de la categoría',
+        categoría: 'Ojos',
     },
     {
         id: 3,
-        nombre: 'Producto',
+        nombre: 'Rubor rosado',
         descripcion: 'Descripción del producto',
         precio: 0,
         imagen: 'producto-de-ejemplo.jpg',
-        categoría: 'Nombre de la categoría',
+        categoría: 'Cara',
     },
     {
         id: 4,
-        nombre: 'Producto',
+        nombre: 'Delineador',
         descripcion: 'Descripción del producto',
         precio: 0,
         imagen: 'producto-de-ejemplo.jpg',
-        categoría: 'Nombre de la categoría',
+        categoría: 'Ojos',
     },
     {
         id: 5,
-        nombre: 'Producto',
+        nombre: 'Crema corporal de castañas',
         descripcion: 'Descripción del producto',
         precio: 0,
         imagen: 'producto-de-ejemplo.jpg',
-        categoría: 'Nombre de la categoría',
+        categoría: 'Cuerpo',
     },
     {
         id: 6,
-        nombre: 'Producto',
+        nombre: 'Shampoo antiquiebre de castañas',
         descripcion: 'Descripción del producto',
         precio: 0,
         imagen: 'producto-de-ejemplo.jpg',
-        categoría: 'Nombre de la categoría',
+        categoría: 'Cabello',
     },
 ];
+
+// 1) Obtener el ID del carrito
+
+const carrito = document.getElementById("minicarrito");
+console.log(carrito);
