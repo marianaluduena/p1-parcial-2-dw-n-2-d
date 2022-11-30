@@ -10,7 +10,7 @@ let productos = [
         nombre: 'Lápiz labial rojo',
         descripcion: 'Su textura suave y cremosa da color vibrante a tus labios mientras los mantiene humectados hastao por 12 hs.',
         precio: 2.000,
-        imagen: '../img/labial.png',
+        imagen: 'labial.png',
         categoría: 'Boca',
     },
     {
@@ -18,7 +18,7 @@ let productos = [
         nombre: 'Sombra de ojos',
         descripcion: 'Descripción del producto',
         precio: 3.200,
-        imagen: 'producto-de-ejemplo.jpg',
+        imagen: 'sombra__de__ojos.png',
         categoría: 'Ojos',
     },
     {
@@ -26,7 +26,7 @@ let productos = [
         nombre: 'Rubor rosado',
         descripcion: 'Descripción del producto',
         precio: 1.500,
-        imagen: 'producto-de-ejemplo.jpg',
+        imagen: 'rubor.png',
         categoría: 'Cara',
     },
     {
@@ -34,7 +34,7 @@ let productos = [
         nombre: 'Delineador',
         descripcion: 'Descripción del producto',
         precio: 1.250,
-        imagen: 'producto-de-ejemplo.jpg',
+        imagen: 'delineador.png',
         categoría: 'Ojos',
     },
     {
@@ -42,7 +42,7 @@ let productos = [
         nombre: 'Crema corporal de castañas',
         descripcion: 'Descripción del producto',
         precio: 2.100,
-        imagen: 'producto-de-ejemplo.jpg',
+        imagen: 'crema__corporal.png',
         categoría: 'Cuerpo',
     },
     {
@@ -50,7 +50,7 @@ let productos = [
         nombre: 'Shampoo antiquiebre de castañas',
         descripcion: 'Descripción del producto',
         precio: 2.550,
-        imagen: 'producto-de-ejemplo.jpg',
+        imagen: 'shampoo.png',
         categoría: 'Cabello',
     },
 ];
@@ -67,24 +67,38 @@ catalogo.setAttribute("id", "productos");
 
 // a) Div que contendrá toda cada una de las tarjetas 
 
-    for(let i = 1; i <= productos.length; i++){
+let divTarjetaContenedor = "";
 
-        const divTarjetaContenedor = document.createElement("div");
-    
-        // Añadirle al catálogo el div contenedor
-        
-        catalogo.appendChild(divTarjetaContenedor);
-    }
+for (let i = 1; i <= productos.length; i++) {
+
+    divTarjetaContenedor = document.createElement("div");
+    // b) Crear la etiqueta imagen
+        const imagenProducto = document.createElement("img");
+        imagenProducto.setAttribute("src", "../img/");
+        // Añadir la img al divTarjetaContenedor que está dentro del elemento padre
+        divTarjetaContenedor.appendChild(imagenProducto);
+  
+    // Añadirle al catálogo el div contenedor
+
+    catalogo.appendChild(divTarjetaContenedor);
+}
+
+
+// Cómo cargar la ruta de las imágenes por cada elemento?
+
+
+/* NO USAR POR AHORA 
+productos.forEach((imagen) => {
+
+    const imagenProducto = document.createElement("img");
+    imagenProducto.setAttribute("src", "../img/");
+    // Añadir la img al divTarjetaContenedor que está dentro del elemento padre
+    divTarjetaContenedor.appendChild(imagenProducto);
+});*/
 
 console.log(catalogo);
 
-/*
-b) Crear la etiqueta imagen
-const etiquetaImagen = document.createElement("img");
-// c) Crear y añadirle al tag img el atributo src con la ruta de la img
-etiquetaImagen.setAttribute("src", "../img/labial.png");
-// b) Añadirla al divTarjetaContenedor
-divTarjetaContenedor.appendChild(etiquetaImagen);*/
+
 
 
 
