@@ -59,3 +59,31 @@ let productos = [
 
 const carrito = document.getElementById("minicarrito");
 console.log(carrito);
+
+// 2) Darle formato al modal 
+
+// Mostrar modal
+const modal = document.getElementById("modal__tarjeta");
+console.log(modal);
+modal.style.display = "block";
+
+// Modificar el título default del modal
+
+const tituloPrincipalModal = "Tu carrito de compras";
+const modalTitulo = document.querySelector(".modal-title");
+modalTitulo.innerHTML = tituloPrincipalModal;
+
+// Modificar el texto default del modal
+
+const infoAdicional = "¡Entrá a nuestro blog y recibí los mejores tips para verte radiante!";
+const modalTexto = document.querySelector(".modal-body > p");
+modalTexto.innerHTML = infoAdicional;
+
+// Modificar los botones default del modal
+
+const btnCerrar = modal.querySelector(".modal-footer > .btn-secondary");
+const btnSave = modal.querySelector(".modal-footer > .btn-primary");
+
+btnCerrar.innerHTML = "Cerrar";
+btnSave.innerHTML = "Comprar";
+
