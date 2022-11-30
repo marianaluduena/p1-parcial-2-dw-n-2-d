@@ -87,3 +87,10 @@ const btnSave = modal.querySelector(".modal-footer > .btn-primary");
 btnCerrar.innerHTML = "Cerrar";
 btnSave.innerHTML = "Comprar";
 
+// Cerrar el botón
+
+btnCerrar.addEventListener("click", (event) =>{
+modal.style.display= "none";
+
+});
+
