@@ -82,15 +82,18 @@ modalTexto.innerHTML = infoAdicional;
 // Modificar los botones default del modal
 
 const btnCerrar = modal.querySelector(".modal-footer > .btn-secondary");
-const btnSave = modal.querySelector(".modal-footer > .btn-primary");
+const btnAceptar = modal.querySelector(".modal-footer > .btn-primary");
 
 btnCerrar.innerHTML = "Cerrar";
-btnSave.innerHTML = "Comprar";
+btnAceptar.innerHTML = "Aceptar";
 
 // Cerrar el botón
 
 btnCerrar.addEventListener("click", (event) =>{
 modal.style.display= "none";
+});
+btnAceptar.addEventListener("click", (event) =>{
 
+    modal.style.display = "none";
 });
 
