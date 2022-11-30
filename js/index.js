@@ -1,16 +1,16 @@
 'use strict';
 
 /*
- *  APELLIDOS
+ *  LUDUEÑA, URIBE
  */
 
 let productos = [
     {
         id: 1,
         nombre: 'Lápiz labial rojo',
-        descripcion: 'Descripción del producto',
+        descripcion: 'Su textura suave y cremosa da color vibrante a tus labios mientras los mantiene humectados hastao por 12 hs.',
         precio: 2.000,
-        imagen: 'producto-de-ejemplo.jpg',
+        imagen: '../img/labial.png',
         categoría: 'Boca',
     },
     {
@@ -60,7 +60,60 @@ let productos = [
 const carrito = document.getElementById("minicarrito");
 console.log(carrito);
 
-// 2) Darle formato al modal 
+// 2) Crear el catálogo de c/u de los productos
+
+const catalogo = document.createElement("div");
+catalogo.setAttribute("id", "productos");
+
+// a) Div que contendrá toda cada una de las tarjetas 
+
+    for(let i = 1; i <= productos.length; i++){
+
+        const divTarjetaContenedor = document.createElement("div");
+    
+        // Añadirle al catálogo el div contenedor
+        
+        catalogo.appendChild(divTarjetaContenedor);
+    }
+
+console.log(catalogo);
+
+/*
+b) Crear la etiqueta imagen
+const etiquetaImagen = document.createElement("img");
+// c) Crear y añadirle al tag img el atributo src con la ruta de la img
+etiquetaImagen.setAttribute("src", "../img/labial.png");
+// b) Añadirla al divTarjetaContenedor
+divTarjetaContenedor.appendChild(etiquetaImagen);*/
+
+
+
+
+
+
+/* TODAVÍA NO SÉ SI USAR ÉSTA FUNCIÓN
+function agregarAtributo(elemento, atributo){
+
+    for(var key in atributo){
+elemento.setAttribute(key, atributo[key]);
+    }
+}
+agregarAtributo(img,{"src": "../img/labial.png"})*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*........................MODAL..........................*/
+
+// Darle formato al modal 
 
 // Mostrar modal
 const modal = document.getElementById("modal__tarjeta");
@@ -89,10 +142,10 @@ btnAceptar.innerHTML = "Aceptar";
 
 // Cerrar el botón
 
-btnCerrar.addEventListener("click", (event) =>{
-modal.style.display= "none";
+btnCerrar.addEventListener("click", (event) => {
+    modal.style.display = "none";
 });
-btnAceptar.addEventListener("click", (event) =>{
+btnAceptar.addEventListener("click", (event) => {
 
     modal.style.display = "none";
 });
