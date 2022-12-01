@@ -8,7 +8,7 @@ let productos = [{
     id: 1,
     nombre: 'Lápiz labial rojo',
     descripcion: 'Lápiz labial color rojo',
-    precio: 2.000,
+    precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
     imagen: '../img/labial.png',
     categoría: 'Boca',
 },
@@ -16,7 +16,7 @@ let productos = [{
     id: 2,
     nombre: 'Sombra de ojos',
     descripcion: 'Varios colores de sombra de ojos',
-    precio: 3.200,
+    precio: "3.200",
     imagen: '../img/sombra__de__ojos.png',
     categoría: 'Ojos',
 },
@@ -24,7 +24,7 @@ let productos = [{
     id: 3,
     nombre: 'Rubor rosado',
     descripcion: 'Rubor color rosado',
-    precio: 1.500,
+    precio: "1.500",
     imagen: '../img/rubor.png',
     categoría: 'Cara',
 },
@@ -32,7 +32,7 @@ let productos = [{
     id: 4,
     nombre: 'Delineador negro',
     descripcion: 'Delineador color negro',
-    precio: 1.250,
+    precio: "1.250",
     imagen: '../img/delineador.png',
     categoría: 'Ojos',
 },
@@ -40,7 +40,7 @@ let productos = [{
     id: 5,
     nombre: 'Crema corporal de castañas',
     descripcion: 'Botella de crema corporal de castañas',
-    precio: 2.100,
+    precio: "2.100",
     imagen: '../img/crema__corporal.png',
     categoría: 'Cuerpo',
 },
@@ -48,7 +48,7 @@ let productos = [{
     id: 6,
     nombre: 'Shampoo antiquiebre de castañas',
     descripcion: 'Botellas de shampoo y acondicionador para el cabello',
-    precio: 2.550,
+    precio: "2.550",
     imagen: '../img/shampoo.png',
     categoría: 'Cabello',
 },
@@ -64,34 +64,6 @@ console.log(carrito);
 const catalogo = document.createElement("div");
 catalogo.setAttribute("id", "productos");
 
-// a) Div que contendrá toda cada una de las tarjetas 
-/*
-let divTarjetaContenedor = "";
-let imagenProducto = "";
-
-for (let i = 1; i <= productos.length; i++) {
-
-    divTarjetaContenedor = document.createElement("div");
-    // b) Crear la etiqueta imagen
-   imagenProducto = document.createElement("img");
-   imagenProducto.setAttribute("src", " ");
-   imagenProducto.setAttribute("alt", " ");
-
-    // Añadir la img al divTarjetaContenedor que está dentro del elemento padre
-    divTarjetaContenedor.appendChild(imagenProducto);
-
-    // Añadirle al catálogo el div contenedor
-
-    catalogo.appendChild(divTarjetaContenedor);
-}*/
-
-// Array separado que contiene todas las imagenes de los productos
-/*
-const arrayDeImagenes = productos.map(img => {
-
-    return img.imagen;
-})
-console.log(arrayDeImagenes);*/
 
 let div = "";
 
@@ -119,26 +91,50 @@ const crearElementos = productos.map(producto => {
 
     let tituloTarjeta = document.createElement("h3");
     tituloTarjeta.className = "card-title";
-    tituloTarjeta.innerHTML = producto.nombre;
+    tituloTarjeta.innerText = producto.nombre;
     // Agregar el título del producto al cuerpo de la tarjeta
     tarjetaCuerpo.append(tituloTarjeta);
 
     // 5) Agregar la descripción de cada producto
     let descripcionProducto = document.createElement("p");
     descripcionProducto.className = "card-text";
+    descripcionProducto.innerText = "Descripción: ";
 
     // Agregar la descripción de cada producto
-    descripcionProducto.innerHTML = producto.descripcion;
+    descripcionProducto.innerText = producto.descripcion;
 
     // Agregar la descripción al cuerpo de la tarjeta
     tarjetaCuerpo.append(descripcionProducto);
-  
+
+    // Crear etiqueta p que tendrá el span con el precio
+
+    let parrafoContenedorDePrecio = document.createElement("p");
+    parrafoContenedorDePrecio.innerText = "Precio: ";
+    // Crear etiqueta span del precio
+    let spanPrecio = document.createElement("span");
+    spanPrecio.innerText = producto.precio;
+    parrafoContenedorDePrecio.append(spanPrecio);
+    tarjetaCuerpo.append(parrafoContenedorDePrecio);
+
+    // Crear etiqueta p con span con la categoría
+
+     let parrafoContenedorDeCategoria = document.createElement("p");
+     parrafoContenedorDeCategoria.innerText = "Categoría: ";
+
+     // Crear etiqueta span con la categoría
+
+     let spanCategoria = document.createElement("span");
+     spanCategoria.innerText = producto.categoría;
+     parrafoContenedorDeCategoria.append(spanCategoria);
+     tarjetaCuerpo.append(parrafoContenedorDeCategoria); 
+
+
     // Crear el botón de añadir al carrito
     let btnAnadir = document.createElement("button");
     btnAnadir.className = "btn-primary btn-anadir";
     btnAnadir.style.backgroundColor = "rgb(240, 42, 75)";
     btnAnadir.innerText = "Añadir al carrito";
-    tarjetaCuerpo.append(btnAnadir); 
+    tarjetaCuerpo.append(btnAnadir);
 
     // Al div contenedor le agrego la tarjeta con toda la info del producto
     div.append(tarjetaCuerpo);
@@ -181,8 +177,10 @@ document.body.appendChild(catalogo);
 
 // Mostrar modal
 const modal = document.getElementById("modal__tarjeta");
-console.log(modal);
-modal.style.display = "block";
+//modal.style.display = "block";
+
+// Desactivado por ahora para poder trabajar
+modal.style.display = "none";
 
 // Modificar el título default del modal
 
