@@ -131,15 +131,16 @@ const crearElementos = productos.map(producto => {
     tarjetaCuerpo.append(descripcionProducto);
     // Al div contenedor le agrego la tarjeta con toda la info del producto
     div.append(tarjetaCuerpo);
+    // 6) Agregar el div contenedor al elemento catálogo
     catalogo.appendChild(div);
     return div;
 
 });
 
-
-// 6) Agregar el div contenedor al elemento catálogo
-
 console.log(catalogo);
+// 7) Agregar el catálogo al documento
+document.body.appendChild(catalogo);
+//console.log(catalogo);
 
 
 
