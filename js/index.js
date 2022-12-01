@@ -9,7 +9,7 @@ let productos = [{
     nombre: 'Lápiz labial rojo',
     descripcion: 'Lápiz labial color rojo',
     precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
-    imagen: '../img/labial.png',
+    imagen: "labial.png",
     categoría: 'Boca',
 },
 {
