@@ -186,6 +186,11 @@
      text-align: center;
      color: #d0e0e3;
  }
+
+ .btn-primary .btn-anadir{
+
+    background-color: rgb(240, 42, 75);
+ }
  
  input[type='button']:disabled,
  input[type='submit']:disabled {

@@ -94,6 +94,7 @@ const arrayDeImagenes = productos.map(img => {
 console.log(arrayDeImagenes);*/
 
 let div = "";
+
 const crearElementos = productos.map(producto => {
 
     // 2) Crear el catálogo de c/u de los productos
@@ -125,12 +126,23 @@ const crearElementos = productos.map(producto => {
     // 5) Agregar la descripción de cada producto
     let descripcionProducto = document.createElement("p");
     descripcionProducto.className = "card-text";
+
     // Agregar la descripción de cada producto
     descripcionProducto.innerHTML = producto.descripcion;
+
     // Agregar la descripción al cuerpo de la tarjeta
     tarjetaCuerpo.append(descripcionProducto);
+  
+    // Crear el botón de añadir al carrito
+    let btnAnadir = document.createElement("button");
+    btnAnadir.className = "btn-primary btn-anadir";
+    btnAnadir.style.backgroundColor = "rgb(240, 42, 75)";
+    btnAnadir.innerText = "Añadir al carrito";
+    tarjetaCuerpo.append(btnAnadir); 
+
     // Al div contenedor le agrego la tarjeta con toda la info del producto
     div.append(tarjetaCuerpo);
+
     // 6) Agregar el div contenedor al elemento catálogo
     catalogo.appendChild(div);
     return div;
