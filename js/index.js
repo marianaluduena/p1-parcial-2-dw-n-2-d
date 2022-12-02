@@ -5,53 +5,53 @@
  */
 
 let productos = [{
-    id: 1,
-    nombre: 'Lápiz labial rojo',
-    descripcion: 'Su textura suave y cremosa permite un aplique perfecto mientras mantiene tus labios humecatados hasta por 12 hs.',
-    precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
-    imagen: "../img/labial.png",
-    categoría: 'Boca',
-},
-{
-    id: 2,
-    nombre: 'Sombra de ojos',
-    descripcion: 'Una paleta de colores cálidos, fríos y vibrantes para cada momento del día y ocasión.',
-    precio: "3.200",
-    imagen: '../img/sombra__de__ojos.png',
-    categoría: 'Ojos',
-},
-{
-    id: 3,
-    nombre: 'Rubor rosado',
-    descripcion: 'De fácil aplicación y larga duración. Deja tus mejillas con un sutil brillo.',
-    precio: "1.500",
-    imagen: '../img/rubor.png',
-    categoría: 'Cara',
-},
-{
-    id: 4,
-    nombre: 'Delineador negro',
-    descripcion: 'Resaltá tu mirada con un color negro, perfecto y adaptable a cualquier color de ojos.',
-    precio: "1.250",
-    imagen: '../img/delineador.png',
-    categoría: 'Ojos',
-},
-{
-    id: 5,
-    nombre: 'Crema corporal de castañas',
-    descripcion: 'La crema de castañas hidrata y suaviza tu piel mientras deja un rico aroma.',
-    precio: "2.100",
-    imagen: '../img/crema__corporal.png',
-    categoría: 'Cuerpo',
-},
-{
-    id: 6,
-    nombre: 'Shampoo antiquiebre de castañas',
-    descripcion: 'Nutrí y fortalecé tu cabello con el poder de las castañas. Sus propiedades naturales antiquebre detienen la caída del pelo.',
-    precio: "2.550",
-    imagen: '../img/shampoo.png',
-    categoría: 'Cabello',
-},
+        id: 1,
+        nombre: 'Lápiz labial rojo',
+        descripcion: 'Su textura suave y cremosa permite un aplique perfecto mientras mantiene tus labios humecatados hasta por 12 hs.',
+        precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
+        imagen: "../img/labial.png",
+        categoría: 'Boca',
+    },
+    {
+        id: 2,
+        nombre: 'Sombra de ojos',
+        descripcion: 'Una paleta de colores cálidos, fríos y vibrantes para cada momento del día y ocasión.',
+        precio: "3.200",
+        imagen: '../img/sombra__de__ojos.png',
+        categoría: 'Ojos',
+    },
+    {
+        id: 3,
+        nombre: 'Rubor rosado',
+        descripcion: 'De fácil aplicación y larga duración. Deja tus mejillas con un sutil brillo.',
+        precio: "1.500",
+        imagen: '../img/rubor.png',
+        categoría: 'Cara',
+    },
+    {
+        id: 4,
+        nombre: 'Delineador negro',
+        descripcion: 'Resaltá tu mirada con un color negro, perfecto y adaptable a cualquier color de ojos.',
+        precio: "1.250",
+        imagen: '../img/delineador.png',
+        categoría: 'Ojos',
+    },
+    {
+        id: 5,
+        nombre: 'Crema corporal de castañas',
+        descripcion: 'La crema de castañas hidrata y suaviza tu piel mientras deja un rico aroma.',
+        precio: "2.100",
+        imagen: '../img/crema__corporal.png',
+        categoría: 'Cuerpo',
+    },
+    {
+        id: 6,
+        nombre: 'Shampoo antiquiebre de castañas',
+        descripcion: 'Nutrí y fortalecé tu cabello con el poder de las castañas. Sus propiedades naturales antiquebre detienen la caída del pelo.',
+        precio: "2.550",
+        imagen: '../img/shampoo.png',
+        categoría: 'Cabello',
+    },
 ];
 
 // 1) Obtener el ID del carrito
@@ -68,6 +68,7 @@ catalogo.className = "catalogo";
 
 
 let div = "";
+let btnComprar = "";
 
 const crearElementos = productos.map(producto => {
 
@@ -76,7 +77,7 @@ const crearElementos = productos.map(producto => {
     // a) Div que contendrá cada una de las tarjetas 
     div = document.createElement("div");
     div.className = "producto-tarjeta";
-    
+
     // b) Crear la img
     let img = document.createElement("img");
     //c) Agregarle una clase
@@ -139,10 +140,10 @@ const crearElementos = productos.map(producto => {
 
     // Crear el botón de comprar y asignarle el ID de cada producto
 
-    let btnComprar = document.createElement("button");
+    btnComprar = document.createElement("button");
     btnComprar.className = "btn-primary btn-comprar";
     btnComprar.style.backgroundColor = "rgb(240, 42, 75)",
-    btnComprar.innerText = "Comprar";
+        btnComprar.innerText = "Comprar";
     btnComprar.setAttribute("id", producto.id);
     tarjetaCuerpo.append(btnComprar);
 
@@ -161,85 +162,95 @@ console.log(catalogo);
 
 document.body.appendChild(catalogo);
 
+// 8) Modal para productos
 
-/*
-const tarjetaLabial = catalogo.childNodes[0];
-tarjetaLabial.id = "tarjeta-labial";
-// Asignarle a cada btn comprar su id
-const btnComprarLabial = tarjetaLabial.querySelector(".btn-primary");
-btnComprarLabial.id = "btn-comprar-labial";
-//console.log(btnComprarLabial);
+// Primero obtener la clase del modal que será para el producto - NO SE ESTÁ USANDO
 
-const tarjetaSombras = catalogo.childNodes[1];
-tarjetaSombras.id = "tarjeta-sombra-de-ojos";
-const btnComprarSombraDeOjos = tarjetaSombras.querySelector(".btn-primary");
-btnComprarSombraDeOjos.id = "btn-comprar-sombra-de-ojos";
+/* EL ÚNICO PRODUCTO QUE SE CREA EN TODAS LAS ETQIETAS DEL MODAL ES EL SHAMPOO
 
+let modalBasico = document.getElementById("modal-producto");
+let modalBasicoTitulo = document.querySelector(".modal-title-producto");
+let modalBasicoTexto = document.querySelector(".modal-body-producto > p");*/
 
-const tarjetaRubor = catalogo.childNodes[2];
-tarjetaRubor.id = "tarjeta-rubor";
-const btnComprarRubor = tarjetaRubor.querySelector(".btn-primary");
-btnComprarRubor.id = "btn-comprar-rubor";
+//console.log(modalBasico);
+//console.log(modalBasicoTitulo);
+//console.log(modalBasicoTexto);
+
+let btnAgregarAlCarrito = "";
+let btnProductoCerrar = "";
+
+const crearModalProducto = productos.map(producto => {
 
 
-const tarjetaDelineador = catalogo.childNodes[3];
-tarjetaDelineador.id = "delineador-de-ojos";
-const btnComprarDelineador = tarjetaDelineador.querySelector(".btn-primary");
-btnComprarDelineador.id = "btn-comprar-delineador";
+    let modalProducto = document.createElement("div");
+    modalProducto.className = "modal-header";
 
-const tarjetaCremaCorporal = catalogo.childNodes[4];
-tarjetaCremaCorporal.id = "crema-corporal";
-const btnComprarCrema = tarjetaCremaCorporal.querySelector(".btn-primary");
-btnComprarCrema.id = "btn-comprar-crema";
+    // Crear el título del modal
+    let modalProductoTitulo = document.createElement("h5");
+    modalProductoTitulo.className = "modal-title";
+    modalProductoTitulo.innerText = producto.nombre;
+    modalProducto.append(modalProductoTitulo);
 
-const tarjetaShampoo = catalogo.childNodes[5];
-tarjetaShampoo.id = "tarjeta-shampoo";
-const btnComprarShampoo = tarjetaShampoo.querySelector(".btn-primary");
-btnComprarShampoo.id = "btn-comprar-shampoo";/*
+    // Crear el div que contendrá al p para el texto
 
-// 8) Modales de cada producto
+    let modalProductoTextoDiv = document.createElement("div");
+    modalProductoTextoDiv.className = "modal-body-producto";
+    modalProducto.append(modalProductoTextoDiv);
 
-const modalLabial = document.getElementById("modal__labial");
+    let modalProductoTexto = document.createElement("p");
+    modalProductoTextoDiv.append(modalProductoTexto);
 
-// Reemplazar info
+    modalProductoTitulo.innerText = producto.nombre;
 
-const modalLabialTitulo = "Rojo pasión";
-const modalProductoLabial = document.querySelector(".modal-title-1");
-//console.log(modalProductoLabial);
-modalProductoLabial.innerHTML = modalLabialTitulo;
+    // Agregar la descripción del producto
 
-const modalLabialDescripcion = "Su textura suave y cremosa permite un aplique perfecto mientras mantiene tus labios humecatados hasta por 12 hs."
-const modalLabialCuerpo = document.querySelector(".modal-body-1 > p");
-modalLabialCuerpo.innerHTML = modalLabialDescripcion;
+    modalProductoTexto.innerText = producto.descripcion;
 
-// Botones Añadir al carrito y cerrar del modal para el labial
+    // Crear el footer del modal
 
-const btnAnadirLabialAlCarrito = document.getElementById("btn-labial-comprar");
-btnAnadirLabialAlCarrito.innerText = "Añadir al carrito";
+    let modalProductoFooter = document.createElement("div");
+    modalProductoFooter.className = "modal-footer";
 
-const btnLabialCerrar = document.getElementById("btn-labial-cerrar");
-btnLabialCerrar.innerText = "Cerrar";
+    // Crear los botones Agregar al carrito y cerrar
 
-//console.log(modalLabial);
+    btnAgregarAlCarrito = document.createElement("button");
+    btnAgregarAlCarrito.classList = "btn, btn-primary";
+    //btnAgregarAlCarrito.id = producto.id;
+    btnAgregarAlCarrito.innerText = "Agregar al carrito";
+    modalProductoFooter.append(btnAgregarAlCarrito);
 
-// Disparar el modal al hacer click en el botón comprarLabial
+    btnProductoCerrar = document.createElement("button");
+    btnProductoCerrar.classList = "btn, btn-secondary";
+    btnProductoCerrar.innerText = "Cerrar";
+    modalProductoFooter.append(btnProductoCerrar);
 
-btnComprarLabial.addEventListener("click", () => {
+    modalProducto.append(modalProductoFooter);
 
-    // Se va a mostrar el modal 
-    modalLabial.style.display = "block";
+    //modalProducto.style.display = "none";
+    console.log(modalProducto);
 });
 
 
-btnLabialCerrar.addEventListener("click", () => {
+// Disparar el modal al hacer click en el botón comprar
 
-    modalLabial.style.display = "none";
+btnComprar.addEventListener("click", () => {
+
+    if (btnComprar == producto.id) {
+        // Se va a mostrar el modal 
+        modalProducto.style.display = "block";
+    }
+});
+
+
+btnProductoCerrar.addEventListener("click", () => {
+
+    modalProducto.style.display = "none";
 
 });
 
 let miCarrito = [productos];
 
-const agregarAlCarrito = (event) =>{
+const agregarAlCarrito = (event) => {
 
     let productoId = event;
 
@@ -255,59 +266,13 @@ btnAnadirLabialAlCarrito.addEventListener("click", function () {
 
 
 
-/* PUNTOS 8 Y 9 TODAVÍA NO FUNCIONAN Y HAY QUE MODIFICARLOS PARA QUE TOMEN LOS DATOS DEL MODAL DEL PRODUCTO
-
-// 8) Tomar todos los botones para añadir al carrito accediendo a la clase btn-anadir
-
-let anadirAlCarritoBtns = document.getElementsByClassName("btn-anadir");
-
-// Hay 6 productos con un btn c/u, por lo tanto 6 btns en todo el documento
-
-for (var i = 0; i < anadirAlCarritoBtns.length; i++) {
-
-    // boton será cada btn iterado
-    var boton = anadirAlCarritoBtns[i];
-    console.log(boton);
-    // Al hacer click en cualquier btn para anadir item se disparará la función
-    boton.addEventListener("click", anadirItemClickeadoAlCarrito);
-    // De todos los productos cargados al carrito, acceder desde el primero
-    var cartItems = document.getElementsByClassName("minicarrito")[0];
-}
-
-//console.log(boton, cartItems);*/
-
-
-
-
-// 9) Añadir item clickeado al carrito
-
-/*
-function anadirItemClickeadoAlCarrito(event) {
-
-    let btn = event.target; // target será cualquier botón Añadir al carrito presionado
-
-    // Obtener una copia del precio del item
-
-    // Para acceder al botón Añadir hay que pasar primero por las clases producto.tarjeta(div contenedor de todo el producto), card-body y el p que
-    // contiene el span del precio
-    let shopItem = boton.parentElement.parentElement.parentElement;
-    console.log(shopItem);
-
-    // Crear la variable precio y acceder al contenido (el precio) desde la primer etiqueta span 
-
-    let precio = shopItem.getElementsByClassName("item-precio")[0].innerText;
-
-    // Función que agregarà al carrito el precio de cada producto clickeado
-    anadirItemAlCarrito();
-}*/
-
-
 
 
 /*........................MODAL..........................*/
 
 // Darle formato al modal 
 
+/*
 // Mostrar modal
 const modal = document.getElementById("modal__tarjeta");
 //modal.style.display = "block";
@@ -343,4 +308,4 @@ btnCerrar.addEventListener("click", (event) => {
 btnAceptar.addEventListener("click", (event) => {
 
     modal.style.display = "none";
-});
+});*/
