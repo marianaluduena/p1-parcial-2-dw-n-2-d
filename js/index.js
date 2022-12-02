@@ -135,11 +135,20 @@ const crearElementos = productos.map(producto => {
 
 
     // Crear el botón de añadir al carrito
+    /* NO USAR HASTA DECIDIR SI USAR EL MODAL O NO
     let btnAnadir = document.createElement("button");
     btnAnadir.className = "btn-primary btn-anadir";
     btnAnadir.style.backgroundColor = "rgb(240, 42, 75)";
     btnAnadir.innerText = "Añadir al carrito";
-    tarjetaCuerpo.append(btnAnadir);
+    tarjetaCuerpo.append(btnAnadir);*/
+
+  // Crear el botón de ver más
+
+  let btnVerMas = document.createElement("button");
+  btnVerMas.className = "btn-primary btn-ver-mas";
+  btnVerMas.style.backgroundColor = "rgb(240, 42, 75)",
+  btnVerMas.innerText = "Ver más";
+  tarjetaCuerpo.append(btnVerMas);
 
     // Al div contenedor le agrego la tarjeta con toda la info del producto
     div.append(tarjetaCuerpo);
@@ -155,6 +164,31 @@ console.log(catalogo);
 // 7) Agregar el catálogo al documento
 
 document.body.appendChild(catalogo);
+
+// 8) Modales de cada producto
+
+const modalLabial = document.getElementById("modal__labial");
+
+// Reemplazar info
+
+const modalLabialTitulo = "Rojo pasión";
+const modalProductoLabial = document.querySelector(".modal-title-1");
+modalProductoLabial.innerHTML = modalLabialTitulo;
+console.log(modalLabial);
+
+/* 
+
+// EJEMPLO DE CÒMO ARMAR LA FUNCIÒN QUE DISPARE LA CREACIÒN DEL MODAL DEL LABIAL
+
+card1.addEventListener("click", () => {
+   getElementbyClassName("modal-title") = getElementsById("card-04-title").innerHTML;
+   getElementsByClassName("modal-image") = getElementsById("card-04-thumbnail").innerHTML;
+   getElementsByClassName("modal-text") = getElementsById("card-04-text").innerHTML;
+
+});
+
+*
+
 
 // 8) Tomar todos los botones para añadir al carrito accediendo a la clase btn-anadir
 
@@ -172,7 +206,12 @@ for (var i = 0; i < anadirAlCarritoBtns.length; i++) {
     // De todos los productos cargados al carrito, acceder desde el primero
     var cartItems = document.getElementsByClassName("minicarrito")[0];
 }
-console.log(boton,cartItems);
+
+//console.log(boton, cartItems);
+
+
+
+
 // 9) Añadir item clickeado al carrito
 
 /*
@@ -185,13 +224,14 @@ function anadirItemClickeadoAlCarrito(event) {
     // Para acceder al botón Añadir hay que pasar primero por las clases producto.tarjeta(div contenedor de todo el producto), card-body y el p que
     // contiene el span del precio
     let shopItem = boton.parentElement.parentElement.parentElement;
+    console.log(shopItem);
 
     // Crear la variable precio y acceder al contenido (el precio) desde la primer etiqueta span 
 
     let precio = shopItem.getElementsByClassName("item-precio")[0].innerText;
 
-    // Función que
-    //anadirItemAlCarrito();
+    // Función que agregarà al carrito el precio de cada producto clickeado
+    anadirItemAlCarrito();
 }*/
 
 
