@@ -9,7 +9,7 @@ let productos = [{
         nombre: 'Lápiz labial rojo',
         descripcion: 'Lápiz labial color rojo',
         precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
-        imagen: "labial.png",
+        imagen: "../img/labial.png",
         categoría: 'Boca',
     },
     {
@@ -81,7 +81,7 @@ const crearElementos = productos.map(producto => {
     //c) Agregarle una clase
     img.className = "tarjeta";
     // d) Agregar el atributo src y la ruta accediendo a la propiedad imagen de cada objeto
-    img.setAttribute = ("src", producto.imagen);
+    img.src = producto.imagen
     // e) Agregar el atributo alt
     img.setAttribute = ("alt", producto.descripcion);
     div.append(img);
@@ -142,12 +142,12 @@ const crearElementos = productos.map(producto => {
     btnAnadir.innerText = "Añadir al carrito";
     tarjetaCuerpo.append(btnAnadir);*/
 
-  // Crear el botón de ver más
+  // Crear el botón de comprar
 
   let btnVerMas = document.createElement("button");
-  btnVerMas.className = "btn-primary btn-ver-mas";
+  btnVerMas.className = "btn-primary btn-comprar";
   btnVerMas.style.backgroundColor = "rgb(240, 42, 75)",
-  btnVerMas.innerText = "Ver más";
+  btnVerMas.innerText = "Comprar";
   tarjetaCuerpo.append(btnVerMas);
 
     // Al div contenedor le agrego la tarjeta con toda la info del producto
