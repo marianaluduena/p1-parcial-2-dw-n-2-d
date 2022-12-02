@@ -76,6 +76,7 @@ const crearElementos = productos.map(producto => {
     // a) Div que contendrá cada una de las tarjetas 
     div = document.createElement("div");
     div.className = "producto-tarjeta";
+   
     // b) Crear la img
     let img = document.createElement("img");
     //c) Agregarle una clase
@@ -144,11 +145,11 @@ const crearElementos = productos.map(producto => {
 
   // Crear el botón de comprar
 
-  let btnVerMas = document.createElement("button");
-  btnVerMas.className = "btn-primary btn-comprar";
-  btnVerMas.style.backgroundColor = "rgb(240, 42, 75)",
-  btnVerMas.innerText = "Comprar";
-  tarjetaCuerpo.append(btnVerMas);
+  let btnComprar = document.createElement("button");
+  btnComprar.className = "btn-primary btn-comprar";
+  btnComprar.style.backgroundColor = "rgb(240, 42, 75)",
+  btnComprar.innerText = "Comprar";
+  tarjetaCuerpo.append(btnComprar);
 
     // Al div contenedor le agrego la tarjeta con toda la info del producto
     div.append(tarjetaCuerpo);
@@ -165,6 +166,44 @@ console.log(catalogo);
 
 document.body.appendChild(catalogo);
 
+
+// Hasta ahora todas las tarjetas de los productos no tienen un id. Acceder a c/ u
+// para obtener cada tarjeta y asignarle un ID
+
+const tarjetaLabial = catalogo.childNodes[0];
+tarjetaLabial.id = "tarjeta-labial";
+// Asignarle a cada btn comprar su id
+const btnComprarLabial = tarjetaLabial.querySelector(".btn-primary");
+btnComprarLabial.id = "btn-comprar-labial";
+//console.log(btnComprarLabial);
+
+const tarjetaSombras = catalogo.childNodes[1];
+tarjetaSombras.id = "tarjeta-sombra-de-ojos";
+const btnComprarSombraDeOjos = tarjetaSombras.querySelector(".btn-primary");
+btnComprarSombraDeOjos.id = "btn-comprar-sombra-de-ojos";
+
+
+const tarjetaRubor = catalogo.childNodes[2];
+tarjetaRubor.id = "tarjeta-rubor";
+const btnComprarRubor = tarjetaRubor.querySelector(".btn-primary");
+btnComprarRubor.id = "btn-comprar-rubor";
+
+
+const tarjetaDelineador = catalogo.childNodes[3];
+tarjetaDelineador.id = "delineador-de-ojos";
+const btnComprarDelineador = tarjetaDelineador.querySelector(".btn-primary");
+btnComprarDelineador.id = "btn-comprar-delineador";
+
+const tarjetaCremaCorporal = catalogo.childNodes[4];
+tarjetaCremaCorporal.id = "crema-corporal";
+const btnComprarCrema = tarjetaCremaCorporal.querySelector(".btn-primary");
+btnComprarCrema.id = "btn-comprar-crema";
+
+const tarjetaShampoo = catalogo.childNodes[5];
+tarjetaShampoo.id = "tarjeta-shampoo";
+const btnComprarShampoo = tarjetaShampoo.querySelector(".btn-primary");
+btnComprarShampoo.id = "btn-comprar-shampoo";
+
 // 8) Modales de cada producto
 
 const modalLabial = document.getElementById("modal__labial");
@@ -173,9 +212,38 @@ const modalLabial = document.getElementById("modal__labial");
 
 const modalLabialTitulo = "Rojo pasión";
 const modalProductoLabial = document.querySelector(".modal-title-1");
+//console.log(modalProductoLabial);
 modalProductoLabial.innerHTML = modalLabialTitulo;
-console.log(modalLabial);
 
+const modalLabialDescripcion = "Su textura suave y cremosa permite un aplique perfecto mientras mantiene tus labios humecatados hasta por 12 hs."
+const modalLabialCuerpo = document.querySelector(".modal-body-1 > p"); 
+modalLabialCuerpo.innerHTML = modalLabialDescripcion;
+
+// Botones Añadir al carrito y cerrar del modal para el labial
+
+const btnAnadirLabialAlCarrito = document.getElementById("btn-labial-comprar");
+btnAnadirLabialAlCarrito.innerText = "Añadir al carrito";
+
+const btnLabialCerrar = document.getElementById("btn-labial-cerrar");
+btnLabialCerrar.innerText = "Cerrar";
+
+//console.log(modalLabial);
+
+// Disparar el modal al hacer click en el botón comprar
+
+modalLabial.addEventListener("click", () => {
+
+
+
+});
+
+
+
+
+btnAnadirLabialAlCarrito.addEventListener("click", function() {
+
+
+});
 /* 
 
 // EJEMPLO DE CÒMO ARMAR LA FUNCIÒN QUE DISPARE LA CREACIÒN DEL MODAL DEL LABIAL
