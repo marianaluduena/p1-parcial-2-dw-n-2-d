@@ -5,53 +5,53 @@
  */
 
 let productos = [{
-    id: 1,
-    nombre: 'Lápiz labial rojo',
-    descripcion: 'Lápiz labial color rojo',
-    precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
-    imagen: "labial.png",
-    categoría: 'Boca',
-},
-{
-    id: 2,
-    nombre: 'Sombra de ojos',
-    descripcion: 'Varios colores de sombra de ojos',
-    precio: "3.200",
-    imagen: '../img/sombra__de__ojos.png',
-    categoría: 'Ojos',
-},
-{
-    id: 3,
-    nombre: 'Rubor rosado',
-    descripcion: 'Rubor color rosado',
-    precio: "1.500",
-    imagen: '../img/rubor.png',
-    categoría: 'Cara',
-},
-{
-    id: 4,
-    nombre: 'Delineador negro',
-    descripcion: 'Delineador color negro',
-    precio: "1.250",
-    imagen: '../img/delineador.png',
-    categoría: 'Ojos',
-},
-{
-    id: 5,
-    nombre: 'Crema corporal de castañas',
-    descripcion: 'Botella de crema corporal de castañas',
-    precio: "2.100",
-    imagen: '../img/crema__corporal.png',
-    categoría: 'Cuerpo',
-},
-{
-    id: 6,
-    nombre: 'Shampoo antiquiebre de castañas',
-    descripcion: 'Botellas de shampoo y acondicionador para el cabello',
-    precio: "2.550",
-    imagen: '../img/shampoo.png',
-    categoría: 'Cabello',
-},
+        id: 1,
+        nombre: 'Lápiz labial rojo',
+        descripcion: 'Lápiz labial color rojo',
+        precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
+        imagen: "labial.png",
+        categoría: 'Boca',
+    },
+    {
+        id: 2,
+        nombre: 'Sombra de ojos',
+        descripcion: 'Varios colores de sombra de ojos',
+        precio: "3.200",
+        imagen: '../img/sombra__de__ojos.png',
+        categoría: 'Ojos',
+    },
+    {
+        id: 3,
+        nombre: 'Rubor rosado',
+        descripcion: 'Rubor color rosado',
+        precio: "1.500",
+        imagen: '../img/rubor.png',
+        categoría: 'Cara',
+    },
+    {
+        id: 4,
+        nombre: 'Delineador negro',
+        descripcion: 'Delineador color negro',
+        precio: "1.250",
+        imagen: '../img/delineador.png',
+        categoría: 'Ojos',
+    },
+    {
+        id: 5,
+        nombre: 'Crema corporal de castañas',
+        descripcion: 'Botella de crema corporal de castañas',
+        precio: "2.100",
+        imagen: '../img/crema__corporal.png',
+        categoría: 'Cuerpo',
+    },
+    {
+        id: 6,
+        nombre: 'Shampoo antiquiebre de castañas',
+        descripcion: 'Botellas de shampoo y acondicionador para el cabello',
+        precio: "2.550",
+        imagen: '../img/shampoo.png',
+        categoría: 'Cabello',
+    },
 ];
 
 // 1) Obtener el ID del carrito
@@ -63,6 +63,8 @@ console.log(carrito);
 
 const catalogo = document.createElement("div");
 catalogo.setAttribute("id", "productos");
+// El catálogo es el div que contiene todas las tarjetas de productos. Añadirle una clase para después acceder al elemento si es necesario
+catalogo.className = "catalogo";
 
 
 let div = "";
@@ -73,6 +75,7 @@ const crearElementos = productos.map(producto => {
 
     // a) Div que contendrá cada una de las tarjetas 
     div = document.createElement("div");
+    div.className = "producto-tarjeta";
     // b) Crear la img
     let img = document.createElement("img");
     //c) Agregarle una clase
@@ -112,21 +115,23 @@ const crearElementos = productos.map(producto => {
     parrafoContenedorDePrecio.innerText = "Precio: ";
     // Crear etiqueta span del precio
     let spanPrecio = document.createElement("span");
+    // Agregarle una clase para después acceder a través de ella para obtener el precio de cada item al agregar al carrito
+    spanPrecio.className = "item-precio";
     spanPrecio.innerText = producto.precio;
     parrafoContenedorDePrecio.append(spanPrecio);
     tarjetaCuerpo.append(parrafoContenedorDePrecio);
 
     // Crear etiqueta p con span con la categoría
 
-     let parrafoContenedorDeCategoria = document.createElement("p");
-     parrafoContenedorDeCategoria.innerText = "Categoría: ";
+    let parrafoContenedorDeCategoria = document.createElement("p");
+    parrafoContenedorDeCategoria.innerText = "Categoría: ";
 
-     // Crear etiqueta span con la categoría
+    // Crear etiqueta span con la categoría
 
-     let spanCategoria = document.createElement("span");
-     spanCategoria.innerText = producto.categoría;
-     parrafoContenedorDeCategoria.append(spanCategoria);
-     tarjetaCuerpo.append(parrafoContenedorDeCategoria); 
+    let spanCategoria = document.createElement("span");
+    spanCategoria.innerText = producto.categoría;
+    parrafoContenedorDeCategoria.append(spanCategoria);
+    tarjetaCuerpo.append(parrafoContenedorDeCategoria);
 
 
     // Crear el botón de añadir al carrito
@@ -146,11 +151,48 @@ const crearElementos = productos.map(producto => {
 });
 
 console.log(catalogo);
+
 // 7) Agregar el catálogo al documento
+
 document.body.appendChild(catalogo);
-//console.log(catalogo);
 
+// 8) Tomar todos los botones para añadir al carrito accediendo a la clase btn-anadir
 
+let anadirAlCarritoBtns = document.getElementsByClassName("btn-anadir");
+
+// Hay 6 productos con un btn c/u, por lo tanto 6 btns en todo el documento
+
+for (var i = 0; i < anadirAlCarritoBtns.length; i++) {
+
+    // boton será cada btn iterado
+    var boton = anadirAlCarritoBtns[i];
+    console.log(boton);
+    // Al hacer click en cualquier btn para anadir item se disparará la función
+    boton.addEventListener("click", anadirItemClickeadoAlCarrito);
+    // De todos los productos cargados al carrito, acceder desde el primero
+    var cartItems = document.getElementsByClassName("minicarrito")[0];
+}
+console.log(boton,cartItems);
+// 9) Añadir item clickeado al carrito
+
+/*
+function anadirItemClickeadoAlCarrito(event) {
+
+    let btn = event.target; // target será cualquier botón Añadir al carrito presionado
+
+    // Obtener una copia del precio del item
+
+    // Para acceder al botón Añadir hay que pasar primero por las clases producto.tarjeta(div contenedor de todo el producto), card-body y el p que
+    // contiene el span del precio
+    let shopItem = boton.parentElement.parentElement.parentElement;
+
+    // Crear la variable precio y acceder al contenido (el precio) desde la primer etiqueta span 
+
+    let precio = shopItem.getElementsByClassName("item-precio")[0].innerText;
+
+    // Función que
+    //anadirItemAlCarrito();
+}*/
 
 
 
