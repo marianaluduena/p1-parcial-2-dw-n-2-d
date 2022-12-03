@@ -153,7 +153,7 @@ function renderizarContenido() {
         btnComprar.className = "btn-primary btn-comprar";
         btnComprar.style.backgroundColor = "rgb(240, 42, 75)",
             btnComprar.innerText = "Comprar";
-        btnComprar.setAttribute("id", producto.id);
+        //btnComprar.setAttribute("id", producto.id);
 
         btnComprar.addEventListener("click", () => {
 
@@ -167,6 +167,7 @@ function renderizarContenido() {
 
             const btnAnadirAlCarrito = document.querySelector(".btn-primary");
             btnAnadirAlCarrito.innerText = "Añadir al carrito";
+            btnAnadirAlCarrito.setAttribute("id", producto.id);
 
             const btnCerrarProducto = document.querySelector(".btn-secondary");
             btnCerrarProducto.innerText = "Cerrar";
@@ -177,13 +178,15 @@ function renderizarContenido() {
             modalProducto.style.display = "block";
 
             // El modal se muestra con los btn añadir al carrito o cerrar
-            // Si se hace click en el btn añadir al carrito:
+            // Si se hace click en el btn añadir al carrito el modal se cierra y se ejecuta la función para añadir al carrito
 
             btnAnadirAlCarrito.addEventListener("click", () => {
 
                 modalProducto.style.display = "none";
 
             });
+
+            btnAnadirAlCarrito.addEventListener("click", anadirProductoAlCarrito);
 
             // Si se hace click en cerrar
 
@@ -216,23 +219,81 @@ document.body.appendChild(catalogo);
 console.log(catalogo);
 
 
+// 8) Btn ver carrito
+
+const btnVerCarrito = document.getElementById("ver-carrito-btn");
+
+// Aplicar acá un modal para ver los productos que se van cargando al carrito
+
+const modalCarrito = document.querySelector(".modal");
+modalCarrito.setAttribute("id", "modal-carrito");
+
+const modalCarritoTitulo = document.querySelector("h5");
+modalCarritoTitulo.innerText = "Lista de productos";
+
+const modalCarritoListaDeProductos = document.querySelector("p");
+modalCarritoListaDeProductos.innerText = "Tus productos:";
+
+const modalBtnVaciar = document.querySelector(".btn-tarjeta");
+modalBtnVaciar.innerText = "Vaciar carrito";
+
+const modalBtnCerrar = document.querySelector(".btn-cerrar");
+modalBtnCerrar.innerText = "Cerrar";
+
+btnVerCarrito.addEventListener("click", () =>{
+
+    modalCarrito.style.display = "block";
+
+})
+
+modalBtnCerrar.addEventListener("click", () =>{
+
+    modalCarrito.style.display = "none";
+})
 
 
+// 9) Añadir un producto al carrito
 
+function anadirProductoAlCarrito(event) {
 
+    // Se agrega el nodo del producto al carrito
 
-const agregarAlCarrito = (event) => {
+    miCarritoLleno.push(event.target.getAttribute("id"));
 
-    let productoId = event;
-
+    // Función para actualizar el carrito
+    renderizarItemsEnElCarrito();
 
 }
+
+anadirProductoAlCarrito();
+
+// 10) Mostrar los productos cargados al carrito
+/*
+function renderizarItemsEnElCarrito (){
+
+    const itemsEnElCarrito = 
+}*/
+
 
 
 
 // FILTRAR POR CATEGORÍAS
 
 let categoriaCara = productos.filter(rostro => rostro.categoría == "Cara");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*........................MODAL..........................*/
