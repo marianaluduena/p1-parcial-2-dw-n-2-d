@@ -10,7 +10,7 @@ let productos = [{
         descripcion: 'Su textura suave y cremosa permite un aplique perfecto mientras mantiene tus labios humecatados hasta por 12 hs.',
         precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
         imagen: "../img/labial.png",
-        categoría: 'Boca',
+        categoría: 'Cara',
     },
     {
         id: 2,
@@ -55,6 +55,7 @@ let productos = [{
 ];
 
 let miCarritoLleno = [];
+const divisa = "$";
 
 // 1) Obtener el ID del carrito
 
@@ -209,22 +210,109 @@ function renderizarContenido() {
         return div;
     })
 
+    // 7) Agregar el catálogo al documento
+    document.body.appendChild(catalogo);
 }
 
 renderizarContenido();
 
-// 7) Agregar el catálogo al documento
 
-document.body.appendChild(catalogo);
-console.log(catalogo);
+// Crear función para crear el modal 
 
 
-// 8) Btn ver carrito
+
+function crearModalProducto() {
+
+    productos.forEach((producto) => {
+
+        // Crear el div principal del modal
+        const divModalProducto = document.createElement("div");
+        divModalProducto.className = "modal";
+        divModalProducto.setAttribute("id", "modal-producto");
+
+        // Crear la X para cerrar la ventana
+        const modalProductoCerrar = document.createElement("a");
+        modalProductoCerrar.className = ("class", "Cerrar");
+        modalProductoCerrar.setAttribute("href", "javascript:void(0)");
+        modalProductoCerrar.innerText = "X";
+        divModalProducto.append(modalProductoCerrar);
+
+        // Crear la img
+        const moldalProductoImagen = document.createElement("img");
+        moldalProductoImagen.src = producto.imagen;
+        moldalProductoImagen.alt = producto.nombre;
+        divModalProducto.append(moldalProductoImagen);
+
+        const modalProductoTitulo = document.createElement("h3");
+        modalProductoTitulo.innerText = "Producto";
+        divModalProducto.append(modalProductoTitulo);
+
+        const modalProductoDescripcion = document.createElement("p");
+        modalProductoDescripcion.innerText = "Descripción";
+        divModalProducto.append(modalProductoDescripcion);
+
+        const modalProductoPrecio = document.createElement("p");
+        modalProductoPrecio.innerText = "Producto";
+        divModalProducto.append(modalProductoPrecio);
+
+        const modalProductoCategoria = document.createElement("p");
+        modalProductoCategoria.innerText = "Categoría";
+        divModalProducto.append(modalProductoCategoria);
+
+        const modalProductoBtnAgregar = document.createElement("button");
+        modalProductoBtnAgregar.innerText = "Añadir";
+        divModalProducto.append(modalProductoBtnAgregar);
+
+        document.body.appendChild(divModalProducto);
+
+        console.log(divModalProducto);
+        return divModalProducto;
+    });
+
+
+}
+crearModalProducto();
+
+
+
+
+
+/*
+function crearModal() {
+
+    productos.forEach(producto => {
+
+        const divModal = document.createElement("div");
+        divModal.className = "modal";
+        divModal.setAttribute("id", producto.id);
+
+        const divModalHeader = document.createElement("div");
+        divModalHeader.className = ("modal-header");
+
+        const modalTitle = document.createElement("h5");
+        modalTitle.className = ("modal-title");
+        modalTitle.innerText = producto.nombre;
+
+        divModalHeader.append(modalTitle);
+
+        divModal.append(divModalHeader);
+
+    });
+    return divModal;
+}
+
+crearModal();*/
+
+
+
+
+
+
+// Btn ver carrito
 
 const btnVerCarrito = document.getElementById("ver-carrito-btn");
 
-// Aplicar acá un modal para ver los productos que se van cargando al carrito
-
+/*
 const modalCarrito = document.querySelector(".modal");
 modalCarrito.setAttribute("id", "modal-carrito");
 
@@ -249,91 +337,11 @@ btnVerCarrito.addEventListener("click", () =>{
 modalBtnCerrar.addEventListener("click", () =>{
 
     modalCarrito.style.display = "none";
-})
+})*/
 
 
-// 9) Añadir un producto al carrito
-
-function anadirProductoAlCarrito(event) {
-
-    // Se agrega el nodo del producto al carrito
-
-    miCarritoLleno.push(event.target.getAttribute("id"));
-
-    // Función para actualizar el carrito
-    renderizarItemsEnElCarrito();
-
-}
-
-anadirProductoAlCarrito();
-
-// 10) Mostrar los productos cargados al carrito
-/*
-function renderizarItemsEnElCarrito (){
-
-    const itemsEnElCarrito = 
-}*/
 
 
 
 
 // FILTRAR POR CATEGORÍAS
-
-let categoriaCara = productos.filter(rostro => rostro.categoría == "Cara");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*........................MODAL..........................*/
-
-// Darle formato al modal 
-
-/*
-// Mostrar modal
-const modal = document.getElementById("modal__tarjeta");
-//modal.style.display = "block";
-
-// Desactivado por ahora para poder trabajar
-modal.style.display = "none";
-
-// Modificar el título default del modal
-
-const tituloPrincipalModal = "Tu carrito de compras";
-const modalTitulo = document.querySelector(".modal-title");
-modalTitulo.innerHTML = tituloPrincipalModal;
-
-// Modificar el texto default del modal
-
-const infoAdicional = "¡Entrá a nuestro blog y recibí los mejores tips para verte radiante!";
-const modalTexto = document.querySelector(".modal-body > p");
-modalTexto.innerHTML = infoAdicional;
-
-// Modificar los botones default del modal
-
-const btnCerrar = modal.querySelector(".modal-footer > .btn-secondary");
-const btnAceptar = modal.querySelector(".modal-footer > .btn-primary");
-
-btnCerrar.innerHTML = "Cerrar";
-btnAceptar.innerHTML = "Aceptar";
-
-// Cerrar el botón
-
-btnCerrar.addEventListener("click", (event) => {
-    modal.style.display = "none";
-});
-btnAceptar.addEventListener("click", (event) => {
-
-    modal.style.display = "none";
-});*/
