@@ -10,7 +10,7 @@ let productos = [{
         descripcion: 'Su textura suave y cremosa permite un aplique perfecto mientras mantiene tus labios humecatados hasta por 12 hs.',
         precio: "2.000", // Pasado a string para visualizar los 0. Cambiarlo luego
         imagen: "../img/labial.png",
-        categoría: 'Cara',
+        categoría: 'Boca',
     },
     {
         id: 2,
@@ -26,7 +26,7 @@ let productos = [{
         descripcion: 'De fácil aplicación y larga duración. Deja tus mejillas con un sutil brillo.',
         precio: "1.500",
         imagen: '../img/rubor.png',
-        categoría: 'Cara',
+        categoría: 'Rostro',
     },
     {
         id: 4,
@@ -54,16 +54,13 @@ let productos = [{
     },
 ];
 
-let miCarritoLleno = [];
-const divisa = "$";
-
 // 1) Obtener el ID del carrito
-
-const domCarrito = document.getElementById("minicarrito");
-console.log(domCarrito);
-
-const domItemsAgregados = document.getElementById("items-cargados");
-console.log(domItemsAgregados);
+/*
+let carrito = [];
+const divisa = "$";
+const minicarrito = document.getElementById("minicarrito");
+const minicarritoCantidadDeItems = document.getElementById("items-cargados");
+const minicarritoPrecioTotal = document.getElementById("precio-total");
 
 
 // 2) Crear el catálogo de c/u de los productos
@@ -85,15 +82,19 @@ function renderizarContenido() {
         // 2) Crear el catálogo de c/u de los productos
 
         // a) Div que contendrá cada una de las tarjetas 
+
         div = document.createElement("div");
         div.className = "producto-tarjeta";
 
         // b) Crear la img
         let img = document.createElement("img");
+
         //c) Agregarle una clase
         img.className = "tarjeta";
+
         // d) Agregar el atributo src y la ruta accediendo a la propiedad imagen de cada objeto
         img.src = producto.imagen
+
         // e) Agregar el atributo alt
         img.setAttribute = ("alt", producto.descripcion);
         div.append(img);
@@ -103,10 +104,10 @@ function renderizarContenido() {
         tarjetaCuerpo.className = "card-body";
 
         // 4) Crear h3 con el título de cada producto 
-
         let tituloTarjeta = document.createElement("h3");
         tituloTarjeta.className = "card-title";
         tituloTarjeta.innerText = producto.nombre;
+
         // Agregar el título del producto al cuerpo de la tarjeta
         tarjetaCuerpo.append(tituloTarjeta);
 
@@ -129,6 +130,7 @@ function renderizarContenido() {
         parrafoContenedorDePrecio.innerText = "Precio: ";
         // Crear etiqueta span del precio
         let spanPrecio = document.createElement("span");
+
         // Agregarle una clase para después acceder a través de ella para obtener el precio de cada item al agregar al carrito
         spanPrecio.className = "item-precio";
         spanPrecio.innerText = producto.precio;
@@ -154,17 +156,37 @@ function renderizarContenido() {
         btnComprar.className = "btn-primary btn-comprar";
         btnComprar.style.backgroundColor = "rgb(240, 42, 75)",
             btnComprar.innerText = "Comprar";
-        //btnComprar.setAttribute("id", producto.id);
+        btnComprar.setAttribute("id", producto.id);
 
         btnComprar.addEventListener("click", () => {
 
+            carrito.push({
+
+                id: producto.id,
+                nombre: producto.nombre,
+                precio: producto.precio,
+                imagen: producto.imagen,
+                categoría: producto.categoría,
+            });
+            console.log(carrito);
+
+
             // Agregar los datos de cada producto al modal. NOTA: existe ya 1 modal en el HTML, los datos los saca de ahí
+
+            //crearModalProducto();
+
+            /* CÓDIGO PARA EL MODAL AL HACER CLICK. NO USAR TODAVÍA
 
             const tituloProducto = document.querySelector(".modal-title-producto");
             tituloProducto.innerText = producto.nombre;
 
             const productoDescripcion = document.querySelector(".modal-body-producto");
             productoDescripcion.innerText = producto.descripcion;
+ 
+            const productoPrecio = document.createElement("p");
+            const span = document.createElement("span");
+            span.innerText = producto.precio;
+      
 
             const btnAnadirAlCarrito = document.querySelector(".btn-primary");
             btnAnadirAlCarrito.innerText = "Añadir al carrito";
@@ -198,7 +220,7 @@ function renderizarContenido() {
             });
 
         });
-
+        });
 
         tarjetaCuerpo.append(btnComprar);
 
@@ -214,134 +236,244 @@ function renderizarContenido() {
     document.body.appendChild(catalogo);
 }
 
-renderizarContenido();
-
-
-// Crear función para crear el modal 
+renderizarContenido();*/
 
 
 
-function crearModalProducto() {
+const shopContent = document.getElementById("shopContent");
+const verCarrito = document.getElementById("minicarrito");
+const modalContainer = document.getElementById("modal-container");
+const cantidadCarrito = document.getElementById("items-cargados");
+
+// 2) Crear el catálogo de c/u de los productos
+
+const catalogo = document.createElement("div");
+catalogo.setAttribute("id", "productos");
+// El catálogo es el div que contiene todas las tarjetas de productos. Añadirle una clase para después acceder al elemento si es necesario
+catalogo.className = "catalogo";
+
+let carrito = [];
+let btnComprar = "";
+
+//recorrer array
+
+
+function renderizarContenido() {
 
     productos.forEach((producto) => {
 
-        // Crear el div principal del modal
-        const divModalProducto = document.createElement("div");
-        divModalProducto.className = "modal";
-        divModalProducto.setAttribute("id", "modal-producto");
+        let content = document.createElement("div");
+        content.className = "card";
+        content.style.margin = "1rem";
 
-        // Crear la X para cerrar la ventana
-        const modalProductoCerrar = document.createElement("a");
-        modalProductoCerrar.className = ("class", "Cerrar");
-        modalProductoCerrar.setAttribute("href", "javascript:void(0)");
-        modalProductoCerrar.innerText = "X";
-        divModalProducto.append(modalProductoCerrar);
+        // b) Crear la img
+        let img = document.createElement("img");
 
-        // Crear la img
-        const moldalProductoImagen = document.createElement("img");
-        moldalProductoImagen.src = producto.imagen;
-        moldalProductoImagen.alt = producto.nombre;
-        divModalProducto.append(moldalProductoImagen);
+        //c) Agregarle una clase
+        img.className = "tarjeta";
 
-        const modalProductoTitulo = document.createElement("h3");
-        modalProductoTitulo.innerText = "Producto";
-        divModalProducto.append(modalProductoTitulo);
+        // d) Agregar el atributo src y la ruta accediendo a la propiedad imagen de cada objeto
+        img.src = producto.imagen
+        
 
-        const modalProductoDescripcion = document.createElement("p");
-        modalProductoDescripcion.innerText = "Descripción";
-        divModalProducto.append(modalProductoDescripcion);
+        // e) Agregar el atributo alt
+        img.setAttribute = ("alt", producto.descripcion);
+        content.append(img);
 
-        const modalProductoPrecio = document.createElement("p");
-        modalProductoPrecio.innerText = "Producto";
-        divModalProducto.append(modalProductoPrecio);
+        // 3) Crear el cuerpo de cada tarjeta 
+        let tarjetaCuerpo = document.createElement("div");
+        tarjetaCuerpo.className = "card-body";
 
-        const modalProductoCategoria = document.createElement("p");
-        modalProductoCategoria.innerText = "Categoría";
-        divModalProducto.append(modalProductoCategoria);
+        // 4) Crear h3 con el título de cada producto 
+        let tituloTarjeta = document.createElement("h3");
+        tituloTarjeta.className = "card-title";
+        tituloTarjeta.style.fontSize = "15px";
+        tituloTarjeta.innerHTML = producto.nombre;
 
-        const modalProductoBtnAgregar = document.createElement("button");
-        modalProductoBtnAgregar.innerText = "Añadir";
-        divModalProducto.append(modalProductoBtnAgregar);
-
-        document.body.appendChild(divModalProducto);
-
-        console.log(divModalProducto);
-        return divModalProducto;
-    });
+        // Agregar el título del producto al cuerpo de la tarjeta
+        tarjetaCuerpo.append(tituloTarjeta);
 
 
+        // 5) Agregar la descripción de cada producto
+        let descripcionProducto = document.createElement("p");
+        descripcionProducto.className = "card-text";
+        descripcionProducto.innerText = "Descripción: ";
+
+        // Agregar la descripción de cada producto
+        descripcionProducto.innerText = producto.descripcion;
+        // La descripción será visible en el modal del producto
+        descripcionProducto.style.display = "none";
+
+        // Agregar la descripción al cuerpo de la tarjeta
+        tarjetaCuerpo.append(descripcionProducto);
+        content.append(tarjetaCuerpo);
+        // Crear el botón de comprar y asignarle el ID de cada producto
+
+
+        // Crear etiqueta p que tendrá el span con el precio
+
+        let parrafoContenedorDePrecio = document.createElement("p");
+        parrafoContenedorDePrecio.innerText = "Precio: ";
+        // Crear etiqueta span del precio
+        let spanPrecio = document.createElement("span");
+
+        // Agregarle una clase para después acceder a través de ella para obtener el precio de cada item al agregar al carrito
+        spanPrecio.className = "item-precio";
+        spanPrecio.innerHTML = producto.precio;
+        parrafoContenedorDePrecio.append(spanPrecio);
+        tarjetaCuerpo.append(parrafoContenedorDePrecio);
+
+        // Crear etiqueta p con span con la categoría
+
+        let parrafoContenedorDeCategoria = document.createElement("p");
+        parrafoContenedorDeCategoria.innerText = "Categoría: ";
+        parrafoContenedorDeCategoria.style.display = "none";
+
+        // Crear etiqueta span con la categoría
+
+        let spanCategoria = document.createElement("span");
+        spanCategoria.innerHTML = producto.categoría;
+        parrafoContenedorDeCategoria.append(spanCategoria);
+        tarjetaCuerpo.append(parrafoContenedorDeCategoria);
+
+
+        btnComprar = document.createElement("button");
+        btnComprar.className = "btn-primary btn-comprar";
+        btnComprar.style.backgroundColor = "rgb(240, 42, 75)",
+            btnComprar.innerText = "Comprar";
+        btnComprar.setAttribute("id", producto.id);
+
+        btnComprar.addEventListener("click", () => {
+
+            //verifico si el producto esta repetido y lo sumo
+
+            const repetido = carrito.some((productoRepetido) => productoRepetido.id === producto.id);
+            if (repetido) {
+                carrito.map((prod) => {
+                    if (prod.id === prod.id) {
+                        prod.cantidad++;
+                    }
+                })
+            } else {
+                carrito.push({
+                    id: producto.id,
+                    imagen: producto.imagen,
+                    nombre: producto.nombre,
+                    descripcion: producto.descripcion,
+                    precio: producto.precio,
+                    cantidad: producto.cantidad,
+                });
+            }
+            console.log(carrito);
+            carritoContador(); // la función está más abajo
+        });
+
+        tarjetaCuerpo.append(btnComprar);
+
+        // Al div contenedor le agrego la tarjeta con toda la info del producto
+        content.append(tarjetaCuerpo);
+
+        // 6) Agregar el div contenedor al elemento catálogo
+        catalogo.appendChild(content);
+        return content;
+    })
+
+    // 7) Agregar el catálogo al documento
+    shopContent.appendChild(catalogo);
 }
-crearModalProducto();
 
-
-
-
-
-/*
-function crearModal() {
-
-    productos.forEach(producto => {
-
-        const divModal = document.createElement("div");
-        divModal.className = "modal";
-        divModal.setAttribute("id", producto.id);
-
-        const divModalHeader = document.createElement("div");
-        divModalHeader.className = ("modal-header");
-
-        const modalTitle = document.createElement("h5");
-        modalTitle.className = ("modal-title");
-        modalTitle.innerText = producto.nombre;
-
-        divModalHeader.append(modalTitle);
-
-        divModal.append(divModalHeader);
-
-    });
-    return divModal;
-}
-
-crearModal();*/
-
-
-
-
-
+renderizarContenido();
 
 // Btn ver carrito
 
 const btnVerCarrito = document.getElementById("ver-carrito-btn");
 
-/*
-const modalCarrito = document.querySelector(".modal");
-modalCarrito.setAttribute("id", "modal-carrito");
 
-const modalCarritoTitulo = document.querySelector("h5");
-modalCarritoTitulo.innerText = "Lista de productos";
-
-const modalCarritoListaDeProductos = document.querySelector("p");
-modalCarritoListaDeProductos.innerText = "Tus productos:";
-
-const modalBtnVaciar = document.querySelector(".btn-tarjeta");
-modalBtnVaciar.innerText = "Vaciar carrito";
-
-const modalBtnCerrar = document.querySelector(".btn-cerrar");
-modalBtnCerrar.innerText = "Cerrar";
-
-btnVerCarrito.addEventListener("click", () =>{
-
-    modalCarrito.style.display = "block";
-
-})
-
-modalBtnCerrar.addEventListener("click", () =>{
-
-    modalCarrito.style.display = "none";
-})*/
+// Crear el modal del carrito
 
 
+const pintarCarrito = () => {
+
+    modalContainer.innerHTML = "";
+    modalContainer.style.display = "flex";
+    const modalHeader = document.createElement("div");
+    modalHeader.className = "modal-Header";
+    modalContainer.append(modalHeader);
+    
+    const modalContainerTitulo = document.createElement("h1");
+    modalContainerTitulo.innerText = "Carrito";
+    modalContainerTitulo.className = "modal-header";
+    modalContainer.append(modalContainerTitulo);
+
+    const modalbutton = document.createElement("h1");
+    modalbutton.innerText = "x";
+    modalbutton.className = "modal-header-button";
+
+    modalbutton.addEventListener("click", () => {
+        modalContainer.style.display = "none";
+    })
+
+    modalHeader.append(modalbutton);
+
+    carrito.forEach((producto) => {
+        let carritoContent = document.createElement("div")
+        carritoContent.className = "modal-content";
+
+        const carritoImg = document.createElement("img");
+        carritoImg.src = producto.imagen;
+        carritoContent.append(carritoImg);
+
+        const carritoNombre = document.createElement("h3");
+        carritoNombre.innerHTML = producto.nombre;
+        carritoContent.append(carritoNombre);
+
+        const carritoPrecio = document.createElement("p");
+        carritoPrecio.innerHTML = producto.precio;
+        carritoContent.append(carritoPrecio);
+
+        const carritoCantidad = document.createElement("p");
+        carritoCantidad.innerHTML = producto.cantidad;
+        carritoContent.append(carritoCantidad);
+
+        modalContainer.append(carritoContent);
+
+        //boton elimimar producto
+        let eliminar = document.createElement("span");
+
+        eliminar.innerText = "❌";
+        eliminar.className = "delete-product";
+        carritoContent.append(eliminar);
+
+        eliminar.addEventListener("click", eliminarProducto);
+
+    });
+
+    //calculo del total
+
+    const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0);
+
+    const totalBuying = document.createElement("div")
+    totalBuying.className = "total-content"
+    totalBuying.innerHTML = `total a pagar: $ ${total}`;
+    modalContainer.append(totalBuying);
+};
+
+btnVerCarrito.addEventListener("click", pintarCarrito);
+
+const eliminarProducto = () => {
+    const foundId = carrito.find((element) => element.id);
+
+    carrito = carrito.filter((carritoId) => {
+        return carritoId !== foundId;
+    })
+
+    pintarCarrito();
+}
+
+// cantitad y monto total de productos en el carrito
+
+const carritoContador = () => {
+    cantidadCarrito.innerText = carrito.lenght;
+}
 
 
-
-
-// FILTRAR POR CATEGORÍAS
