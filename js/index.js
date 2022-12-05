@@ -330,3 +330,18 @@ const eliminarProducto = () => {
 const carritoContador = () => {
     cantidadCarrito.innerText = carrito.lenght;
 }
+
+// FILTRAR POR CATEGORÍA
+
+/*
+const categoriaUno = document.querySelector("a");
+categoriaUno.id = "categoria-uno";
+console.log(categoriaUno);
+
+categoriaUno.addEventListener("click", () => {
+
+    const categoriaRostro = productos.filter(producto => producto.categoría == "Rostro");
+    console.log(categoriaRostro);
+    return categoriaRostro;
+
+});*/
