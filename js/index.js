@@ -215,6 +215,13 @@ renderizarContenido();
 const btnVerCarrito = document.getElementById("ver-carrito-btn");
 btnVerCarrito.style.fontSize = 20 + "px";
 
+// Btn vaciar carrito 
+
+const btnVaciarCarrito = document.createElement("button");
+btnVaciarCarrito.innerText = "Vaciar carrito";
+btnVaciarCarrito.style.margin = 2 + "rem";
+btnVaciarCarrito.style.padding = 1 + "rem";
+btnVaciarCarrito.style.fontSize = 20 + "px";
 
 // Crear el modal del carrito
 
@@ -231,6 +238,7 @@ const pintarCarrito = () => {
     const modalContainerTitulo = document.createElement("h1");
     modalContainerTitulo.innerText = "Carrito";
     modalContainerTitulo.className = "modal-header";
+    modalContainerTitulo.style.padding = 1.5 + "rem";
     modalContainer.append(modalContainerTitulo);
 
     const modalbutton = document.createElement("h1");
@@ -289,28 +297,16 @@ const pintarCarrito = () => {
 
     const totalBuying = document.createElement("div")
     totalBuying.className = "total-content"
-    totalBuying.innerHTML = `total a pagar: $ ${total}`;
+    totalBuying.innerHTML = `Total a pagar: $ ${total}`;
     modalContainer.append(totalBuying);
 
+    // Div para el btn de vaciar carrito
+
+    const modalContainerFooter = document.createElement("div");
+    modalContainerFooter.className = "modal-footer";
+    modalContainerFooter.append(btnVaciarCarrito);
+    modalContainer.append(modalContainerFooter);
 };
-
-/* BTN VACIAR CARRITO: EN QUÉ PARTE DEL MODAL COLOCARLO??
-
-const modalContainerFooter = document.createElement("div");
-modalContainerFooter.className = "modal-footer";
-modalContainer.append(modalContainerFooter);
-
-
-const btnVaciarCarrito = document.createElement("button");
-btnVaciarCarrito.innerText = "Vaciar carrito";
-btnVaciarCarrito.addEventListener("click", vaciarCarrito());
-modalContainerFooter.append(btnVaciarCarrito);
-
-function vaciarCarrito() {
-    carrito = [];
-    pintarCarrito();
-
-}*/
 
 
 btnVerCarrito.addEventListener("click", pintarCarrito);
@@ -329,6 +325,17 @@ const eliminarProducto = () => {
 
 const carritoContador = () => {
     cantidadCarrito.innerText = carrito.lenght;
+}
+
+
+// Evento para btn vaciar carrito
+
+btnVaciarCarrito.addEventListener("click", vaciarCarrito);
+
+function vaciarCarrito() {
+    carrito = [];
+    pintarCarrito();
+
 }
 
 // FILTRAR POR CATEGORÍA
